@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+        jackOptions {
+            enabled true
+        }
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$versionSupportLibrary"
+    compile "com.android.support:design:$versionSupportLibrary"
+    compile "com.android.support:recyclerview-v7:$versionSupportLibrary"
+    compile "io.reactivex:rxjava:$versionRxJava"
+    compile "io.reactivex:rxandroid:$versionRxAndroid"
+    provided "com.google.auto.value:auto-value:$versionAutoValue"
+    annotationProcessor "com.google.auto.value:auto-value:$versionAutoValue"
+    compile "com.jakewharton:butterknife:$versionButterKnife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versionButterKnife"
+}

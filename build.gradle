@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //MAIN PROJECT
+    applicationId = "io.kimo.doppelganger"
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.0"
+    minSdkVersion = 14
+    targetSdkVersion = 25
+
+    //LIBRARIES
+    versionSupportLibrary = "25.0.0"
+    versionRxJava = "1.1.6"
+    versionRxAndroid = "1.2.1"
+    versionAutoValue = "1.2"
+    versionButterKnife = "8.4.0"
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
